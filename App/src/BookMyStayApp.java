@@ -1,16 +1,10 @@
-import java.util.*;
-
 public class BookMyStayApp {
 
     public static void main(String[] args) {
 
-        Map<String, Integer> inventory = new HashMap<>();
-        inventory.put("Single", 0);
+        double amount = 2000;
 
-        System.out.println("Cancelling booking...");
-
-        inventory.put("Single", inventory.get("Single") + 1);
-
-        System.out.println("Updated availability: " + inventory.get("Single"));
+        System.out.println("Processing payment: " + amount);
+        System.out.println("Payment Successful");
     }
 }
