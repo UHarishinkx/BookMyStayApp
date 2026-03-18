@@ -25,6 +25,6 @@ public class BookMyStayApp {
             total += s.cost;
         }
 
-        System.out.println("Total Add-on Cost: " + total);
+        System.out.println("Total Add-on: " + total);
     }
 }
