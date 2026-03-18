@@ -1,8 +1,7 @@
 import java.util.*;
 
 class Reservation {
-    String guest;
-    String room;
+    String guest, room;
 
     Reservation(String g, String r) {
         guest = g;
@@ -14,14 +13,19 @@ public class BookMyStayApp {
 
     public static void main(String[] args) {
 
-        Queue<Reservation> queue = new LinkedList<>();
+        Map<String, Integer> inventory = new HashMap<>();
+        inventory.put("Single", 2);
 
-        queue.add(new Reservation("Abhi", "Single"));
-        queue.add(new Reservation("Subha", "Double"));
+        Set<String> used = new HashSet<>();
 
-        while (!queue.isEmpty()) {
-            Reservation r = queue.poll();
-            System.out.println(r.guest + " requested " + r.room);
+        Reservation r = new Reservation("Abhi", "Single");
+
+        if (inventory.get("Single") > 0) {
+            String roomId = "Single-" + (used.size() + 1);
+            used.add(roomId);
+            inventory.put("Single", inventory.get("Single") - 1);
+
+            System.out.println("Allocated: " + roomId);
         }
     }
 }
