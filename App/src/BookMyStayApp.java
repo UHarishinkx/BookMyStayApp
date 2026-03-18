@@ -1,11 +1,12 @@
 import java.util.*;
 
-class Reservation {
-    String guest, room;
+class Service {
+    String name;
+    double cost;
 
-    Reservation(String g, String r) {
-        guest = g;
-        room = r;
+    Service(String n, double c) {
+        name = n;
+        cost = c;
     }
 }
 
@@ -13,19 +14,17 @@ public class BookMyStayApp {
 
     public static void main(String[] args) {
 
-        Map<String, Integer> inventory = new HashMap<>();
-        inventory.put("Single", 2);
+        List<Service> services = new ArrayList<>();
 
-        Set<String> used = new HashSet<>();
+        services.add(new Service("Breakfast", 500));
+        services.add(new Service("Spa", 1000));
 
-        Reservation r = new Reservation("Abhi", "Single");
+        double total = 0;
 
-        if (inventory.get("Single") > 0) {
-            String roomId = "Single-" + (used.size() + 1);
-            used.add(roomId);
-            inventory.put("Single", inventory.get("Single") - 1);
-
-            System.out.println("Allocated: " + roomId);
+        for (Service s : services) {
+            total += s.cost;
         }
+
+        System.out.println("Total Add-on Cost: " + total);
     }
 }
