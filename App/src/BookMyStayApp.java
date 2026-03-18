@@ -1,47 +1,49 @@
-import java.util.HashMap;
-class RoomInventory {
-    private HashMap<String, Integer> inventory;
-    public RoomInventory() {
-        inventory = new HashMap<>();
-    }
-    public void addRoomType(String roomType, int count) {
-        inventory.put(roomType, count);
-    }
-    public int getAvailability(String roomType) {
-        return inventory.getOrDefault(roomType, 0);
-    }
-    public void bookRoom(String roomType) {
-        int available = inventory.getOrDefault(roomType, 0);
+import java.util.*;
 
-        if (available > 0) {
-            inventory.put(roomType, available - 1);
-            System.out.println(roomType + " booked successfully.");
-        }
-        else {
-            System.out.println("No " + roomType + " rooms available.");
-        }
+class RoomInventory {
+    private Map<String, Integer> inventory = new HashMap<>();
+
+    public void addRoomType(String type, int count) {
+        inventory.put(type, count);
     }
-    public void displayInventory() {
-        System.out.println("\nCurrent Room Availability:");
-        for (String room : inventory.keySet()) {
-            System.out.println(room + " : " + inventory.get(room));
-        }
+
+    public int getAvailability(String type) {
+        return inventory.getOrDefault(type, 0);
     }
 }
+
+class Room {
+    String type;
+    int price;
+
+    Room(String type, int price) {
+        this.type = type;
+        this.price = price;
+    }
+}
+
 public class BookMyStayApp {
+
     public static void main(String[] args) {
-        System.out.println("Welcome to BookMyStay");
+
         RoomInventory inventory = new RoomInventory();
-        inventory.addRoomType("Single Room", 10);
-        inventory.addRoomType("Double Room", 6);
-        inventory.addRoomType("Suite Room", 3);
-        inventory.displayInventory();
-        System.out.println("\nBooking Rooms...");
-        inventory.bookRoom("Single Room");
-        inventory.bookRoom("Suite Room");
-        inventory.bookRoom("Suite Room");
-        inventory.bookRoom("Suite Room");
-        inventory.bookRoom("Suite Room");
-        inventory.displayInventory();
+        inventory.addRoomType("Single", 5);
+        inventory.addRoomType("Double", 3);
+        inventory.addRoomType("Suite", 2);
+
+        Room single = new Room("Single", 1500);
+        Room dbl = new Room("Double", 2500);
+        Room suite = new Room("Suite", 5000);
+
+        System.out.println("Available Rooms:\n");
+
+        if (inventory.getAvailability("Single") > 0)
+            System.out.println("Single - ₹" + single.price);
+
+        if (inventory.getAvailability("Double") > 0)
+            System.out.println("Double - ₹" + dbl.price);
+
+        if (inventory.getAvailability("Suite") > 0)
+            System.out.println("Suite - ₹" + suite.price);
     }
 }
