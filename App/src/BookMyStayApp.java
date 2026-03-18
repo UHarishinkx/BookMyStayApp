@@ -13,19 +13,13 @@ public class BookMyStayApp {
 
     public static void main(String[] args) {
 
-        Map<String, Integer> inventory = new HashMap<>();
-        inventory.put("Single", 2);
+        List<Reservation> history = new ArrayList<>();
 
-        Set<String> used = new HashSet<>();
+        history.add(new Reservation("Abhi", "Single"));
+        history.add(new Reservation("Subha", "Double"));
 
-        Reservation r = new Reservation("Abhi", "Single");
-
-        if (inventory.get("Single") > 0) {
-            String roomId = "Single-" + (used.size() + 1);
-            used.add(roomId);
-            inventory.put("Single", inventory.get("Single") - 1);
-
-            System.out.println("Allocated: " + roomId);
+        for (Reservation r : history) {
+            System.out.println(r.guest + " booked " + r.room);
         }
     }
 }
